@@ -10,6 +10,14 @@ using System.Runtime.InteropServices;
 
 namespace ConsoleApplication2
 {
+    /// <summary>
+    /// This class is responsible for reading the data from the large excel file that holds the SAP data on all sales 
+    /// numbers entered. 
+    /// 
+    /// @author: Alexander James Bochel
+    /// @version: 8/30/2017
+    /// 
+    /// </summary>
     public class Reader
     {
         public List<Sales> saleList;
@@ -26,6 +34,9 @@ namespace ConsoleApplication2
 
         public int location;
 
+        /// <summary>
+        /// This constructor opens the excel file, creates a new list and printer. 
+        /// </summary>
         public Reader()
         {
             // Open the Excel Sheet here. 
@@ -42,6 +53,10 @@ namespace ConsoleApplication2
             garbageCleanup();
         }
 
+        /// <summary>
+        /// This method reads through the large excel sheet and new sales to add to the list. If the sale
+        /// alreader exists it simply increases the total count of the sale. 
+        /// </summary>
         public void read()
         {
             int i = 2;
@@ -95,7 +110,11 @@ namespace ConsoleApplication2
             }
         }
 
-        /// Checks to see if that string already exists. 
+        /// <summary>
+        /// Checks to see if that string already exists.
+        /// </summary>
+        /// <param name="compStr"> The string being compared to. </param>
+        /// <returns> Whether or not the string already exists. </returns> 
         public bool checkExists(string compStr)
         {
             for (int i = 0; i < descStringList.Count; i++ )
@@ -141,6 +160,9 @@ namespace ConsoleApplication2
             }
         }
 
+        /// <summary>
+        /// Releases excel from memory. 
+        /// </summary>
         public void garbageCleanup()
         {
             excel.Quit();

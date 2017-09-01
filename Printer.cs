@@ -8,15 +8,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication2
 {
+    /// <summary>
+    /// This class prints data to an excel sheet. 
+    /// 
+    /// @author: Alexander James Bochel
+    /// @version: 8/30/2017
+    /// 
+    /// </summary>
     public class Printer
     {
-
         private _Application excel;
         private Workbooks wbs;
         private _Workbook wb;
         private _Worksheet ws;
         private const int sheetNumber = 2;
 
+        /// <summary>
+        /// This constructor determines the exel file being worked on and also prints the headers
+        /// for the report. 
+        /// </summary>
+        /// <param name="excel"> The current instance of excel. </param>
+        /// <param name="wbs"> The workbooks instance. </param>
+        /// <param name="wb"> The current workbook being used. </param>
         public Printer(_Application excel, Workbooks wbs,  _Workbook wb)
         {
             this.excel = excel;
@@ -26,6 +39,12 @@ namespace ConsoleApplication2
             printHeaders();
         }
 
+        /// <summary>
+        /// This method prints the row given to it by the reader class.
+        /// </summary>
+        /// <param name="sale"> The sale being printed. </param>
+        /// <param name="i"> Vertical location. </param>
+        /// <param name="j"> Horizontal location. </param>
         public void printDumpRow(Sales sale, int i, int j)
         {
             printCell(i, j, sale.docType);
@@ -41,6 +60,10 @@ namespace ConsoleApplication2
             printCell(i, j, sale.deliveryDate);
         }
 
+        /// <summary>
+        /// This method prints the descriptions for each sale. 
+        /// </summary>
+        /// <param name="list"> List being modified. </param>
         public void printDescriptions(List<StringWithCount> list)
         {
             for (int i = 0; i < list.Count; i++ )
@@ -50,6 +73,9 @@ namespace ConsoleApplication2
             }
         }
 
+        /// <summary>
+        /// This method prints the headers for the new excel sheet. 
+        /// </summary>
         public void printHeaders()
         {
             printCell(1, 1, "Document Type");
